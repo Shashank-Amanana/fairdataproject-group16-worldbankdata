@@ -1,4 +1,4 @@
-# FAIR Data Engineering Project — Group 16
+# FAIR Data Engineering Project-Group 16
 
 The goal of the project is to apply the FAIR principles (Findable, Accessible, Interoperable, Reusable) to a sample of the
 World Bank's **[Projects & Operations](https://datacatalog.worldbank.org/search/dataset/0037800/world-bank-projects-operations)**
