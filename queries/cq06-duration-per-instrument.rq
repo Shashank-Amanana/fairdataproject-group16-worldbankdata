@@ -1,0 +1,11 @@
+# CQ6 - What is the average project duration (years) per lending instrument?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?lendingInstrument (COUNT(?project) AS ?projects) (AVG(?years) AS ?averageDurationYears) WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:durationInYears ?years ;
+           g16:hasLendingInstrument/rdfs:label ?lendingInstrument .
+}
+GROUP BY ?lendingInstrument
+ORDER BY DESC(?averageDurationYears)

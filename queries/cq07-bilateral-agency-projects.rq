@@ -1,0 +1,9 @@
+# CQ7 - How many projects received financing from a Bilateral Agency, and what is their total cost?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX data:   <https://w3id.org/FAIR-course-UT/2026/group16/data#>
+
+SELECT (COUNT(?project) AS ?projects) (SUM(?cost) AS ?totalCurrentCostUSD) WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:currentCostUSD ?cost ;
+           g16:hasFinancialAllocation/g16:hasFinancialType data:financial-type-bilateral-agency .
+}

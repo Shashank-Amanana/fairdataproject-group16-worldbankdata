@@ -1,0 +1,17 @@
+# CQ5 - Which financiers co-finance projects together with IDA (IDA Credit or IDA Grant), and in which countries?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX data:   <https://w3id.org/FAIR-course-UT/2026/group16/data#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?cofinancier (COUNT(DISTINCT ?project) AS ?projects)
+       (GROUP_CONCAT(DISTINCT ?country; separator=", ") AS ?countries) WHERE {
+  VALUES ?ida { data:financier-ida-credit data:financier-ida-grant }
+  ?project a g16:WorldBankProject ;
+           g16:hasFinancialAllocation ?allocation ;
+           g16:hasSpatialCoverage/rdfs:label ?country .
+  ?allocation g16:providedByFinancier ?ida , ?other .
+  ?other rdfs:label ?cofinancier .
+  FILTER (?other NOT IN (data:financier-ida-credit, data:financier-ida-grant))
+}
+GROUP BY ?cofinancier
+ORDER BY DESC(?projects) ?cofinancier

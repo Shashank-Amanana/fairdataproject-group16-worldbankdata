@@ -1,0 +1,11 @@
+# CQ3 - What is the total commitment per development theme?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?theme (COUNT(?project) AS ?projects) (SUM(?commitment) AS ?totalCommitmentUSD) WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:totalCommitmentUSD ?commitment ;
+           g16:hasTheme/rdfs:label ?theme .
+}
+GROUP BY ?theme
+ORDER BY DESC(?totalCommitmentUSD)

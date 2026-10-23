@@ -1,0 +1,25 @@
+# CQ9 (integration with Wikidata) - What is the World Bank commitment per inhabitant for each country?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX wdt:    <http://www.wikidata.org/prop/direct/>
+
+SELECT ?country ?totalCommitmentUSD ?population
+       ((?totalCommitmentUSD / ?population) AS ?commitmentPerInhabitantUSD) WHERE {
+  {
+    SELECT ?country ?totalCommitmentUSD (MAX(?pop) AS ?population) WHERE {
+      {
+        SELECT ?country ?wikidata (SUM(?commitment) AS ?totalCommitmentUSD) WHERE {
+          ?project a g16:WorldBankProject ;
+                   g16:totalCommitmentUSD ?commitment ;
+                   g16:hasSpatialCoverage ?c .
+          ?c rdfs:label ?country ; schema:sameAs ?wikidata .
+        }
+        GROUP BY ?country ?wikidata
+      }
+      SERVICE <https://query.wikidata.org/sparql> { ?wikidata wdt:P1082 ?pop }
+    }
+    GROUP BY ?country ?totalCommitmentUSD
+  }
+}
+ORDER BY DESC(?commitmentPerInhabitantUSD)

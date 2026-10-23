@@ -1,0 +1,223 @@
+@prefix : <https://w3id.org/FAIR-course-UT/2026/group16/ont#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dcterms:created a owl:AnnotationProperty .
+
+dcterms:creator a owl:AnnotationProperty .
+
+dcterms:description a owl:AnnotationProperty .
+
+dcterms:license a owl:AnnotationProperty .
+
+<https://w3id.org/FAIR-course-UT/2026/group16/ont> a owl:Ontology ;
+    dcterms:created "2026-10-21"^^xsd:date ;
+    dcterms:creator "Saket Dronamraju",
+        "Shashank Kumar Amanana",
+        "Group 16"@en ;
+    dcterms:description "A semantic domain model for FAIRifying World Bank project operations: project lifecycle dates and durations, financial commitments and allocations, financiers, lending instruments, development themes and recipient countries."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:title "World Bank FAIR Project Ontology - Group 16"@en ;
+    rdfs:seeAlso <https://github.com/Shashank-Amanana/fairdataproject-group16-worldbankdata> ;
+    owl:versionIRI <https://w3id.org/FAIR-course-UT/2026/group16/ont/1.0.0> ;
+    owl:versionInfo "1.0.0" .
+
+:Active a owl:NamedIndividual,
+        :ProjectStatus ;
+    rdfs:label "Active"@en ;
+    rdfs:comment "Approved and under implementation."@en .
+
+:Closed a owl:NamedIndividual,
+        :ProjectStatus ;
+    rdfs:label "Closed"@en ;
+    rdfs:comment "Implementation has ended."@en .
+
+:Dropped a owl:NamedIndividual,
+        :ProjectStatus ;
+    rdfs:label "Dropped"@en ;
+    rdfs:comment "Discontinued before or during implementation."@en .
+
+:Pipeline a owl:NamedIndividual,
+        :ProjectStatus ;
+    rdfs:label "Pipeline"@en ;
+    rdfs:comment "In preparation, not yet approved by the Board."@en .
+
+:allocationAmountUSD a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "allocation amount USD"@en ;
+    rdfs:comment "Total amount of the allocation in US dollars, summed over all its financiers (source column 'Amount USD')."@en ;
+    rdfs:domain :FinancialAllocation ;
+    rdfs:range xsd:decimal .
+
+:approvalDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "approval date"@en ;
+    rdfs:comment "Date on which the World Bank Board of Executive Directors approved the project."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:date ;
+    rdfs:seeAlso schema:startDate ;
+    rdfs:subPropertyOf dcterms:date .
+
+:closingDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "closing date"@en ;
+    rdfs:comment "Planned (for active and pipeline projects) or actual (for closed projects) closing date of the project."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:date ;
+    rdfs:seeAlso schema:endDate ;
+    rdfs:subPropertyOf dcterms:date .
+
+:currency a owl:DatatypeProperty ;
+    rdfs:label "currency"@en ;
+    rdfs:comment "Currency of the allocation as an ISO 4217 code. Always \"USD\" in this dataset."@en ;
+    rdfs:domain :FinancialAllocation ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf schema:currency .
+
+:currentCostUSD a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "current project cost USD"@en ;
+    rdfs:comment "Current estimate of the total cost of the project from all funding sources, in US dollars."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:decimal .
+
+:durationInYears a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "project duration (years)"@en ;
+    rdfs:comment "Time between the approval date and the closing date, in years with one decimal, as reported in the source."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:decimal .
+
+:hasFinancialAllocation a owl:ObjectProperty ;
+    rdfs:label "has financial allocation"@en ;
+    rdfs:comment "Links a project to the financial allocation that describes its financing package."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range :FinancialAllocation .
+
+:hasFinancialType a owl:ObjectProperty ;
+    rdfs:label "has financial type"@en ;
+    rdfs:comment "A type of financier involved in the allocation (e.g. World Bank Group, Bilateral Agency). An allocation can have several types. The source does not say which financier has which type, so the types are attached to the allocation, not to individual financiers."@en ;
+    rdfs:domain :FinancialAllocation ;
+    rdfs:range :FinancialType .
+
+:hasLendingInstrument a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has lending instrument"@en ;
+    rdfs:comment "The lending instrument through which the World Bank finances the project."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range :LendingInstrument ;
+    rdfs:seeAlso dcterms:type .
+
+:hasSpatialCoverage a owl:ObjectProperty ;
+    rdfs:label "has spatial coverage"@en ;
+    rdfs:comment "The country or territory that receives the funds and where the project takes place."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range :Country ;
+    rdfs:subPropertyOf dcterms:spatial .
+
+:hasStatus a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has status"@en ;
+    rdfs:comment "The current lifecycle stage of the project."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range :ProjectStatus .
+
+:hasTheme a owl:ObjectProperty ;
+    rdfs:label "has theme"@en ;
+    rdfs:comment "A development theme the project contributes to. A project can have several themes."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range :DevelopmentTheme ;
+    rdfs:subPropertyOf dcterms:subject .
+
+:projectID a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "project ID"@en ;
+    rdfs:comment "The World Bank project identifier, the letter P followed by six digits (e.g. P000035)."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dcterms:identifier .
+
+:projectName a owl:DatatypeProperty ;
+    rdfs:label "project name"@en ;
+    rdfs:comment "The name of the project as given by the World Bank."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:string ;
+    rdfs:seeAlso dcterms:title .
+
+:providedByFinancier a owl:ObjectProperty ;
+    rdfs:label "provided by financier"@en ;
+    rdfs:comment "A financier that contributes to the allocation. An allocation can be provided by several financiers."@en ;
+    rdfs:domain :FinancialAllocation ;
+    rdfs:range :Financier ;
+    rdfs:seeAlso schema:funder .
+
+:totalCommitmentUSD a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "total commitment USD"@en ;
+    rdfs:comment "Amount committed by the World Bank (IBRD and/or IDA) to the project, in US dollars."@en ;
+    rdfs:domain :WorldBankProject ;
+    rdfs:range xsd:decimal .
+
+dcterms:identifier a owl:DatatypeProperty .
+
+dcterms:spatial a owl:ObjectProperty .
+
+dcterms:subject a owl:ObjectProperty .
+
+dcterms:title a owl:AnnotationProperty .
+
+schema:Country a owl:Class .
+
+schema:Project a owl:Class .
+
+schema:currency a owl:DatatypeProperty .
+
+foaf:Organization a owl:Class .
+
+foaf:Project a owl:Class .
+
+:Country a owl:Class ;
+    rdfs:label "Country"@en ;
+    rdfs:comment "A country or territory that borrows or receives World Bank funds, linked to its Wikidata item. Includes territories that are not sovereign states (e.g. West Bank and Gaza, Sint Maarten)."@en ;
+    rdfs:subClassOf schema:Country .
+
+:DevelopmentTheme a owl:Class ;
+    rdfs:label "Development Theme"@en ;
+    rdfs:comment "A development objective a project contributes to, from the World Bank theme taxonomy (e.g. Public Sector Management, Human Development and Gender)."@en .
+
+:FinancialType a owl:Class ;
+    rdfs:label "Financial Type"@en ;
+    rdfs:comment "A category of financier (World Bank Group, Bilateral Agency, Multilateral Agency, Trust Funds, Local Contributor, Private Organization, Export Credit, Other)."@en .
+
+:Financier a owl:Class ;
+    rdfs:label "Financier"@en ;
+    rdfs:comment "An organisation or source of funds that finances a project (e.g. IDA Credit, Global Environment Facility, Borrower/Recipient). Some financiers are generic categories rather than named organisations."@en ;
+    rdfs:subClassOf foaf:Organization .
+
+:LendingInstrument a owl:Class ;
+    rdfs:label "Lending Instrument"@en ;
+    rdfs:comment "The financing instrument through which the World Bank provides funds (e.g. Investment Project Financing, Development Policy Lending, Program-for-Results Financing)."@en .
+
+dcterms:date a owl:DatatypeProperty .
+
+xsd:date a rdfs:Datatype .
+
+:FinancialAllocation a owl:Class ;
+    rdfs:label "Financial Allocation"@en ;
+    rdfs:comment "An intermediary node connecting a project to its financiers, the types of those financiers, and the total amount they provide. In this dataset each project has one allocation, because the source reports one total amount per project and not an amount per financier."@en ;
+    rdfs:seeAlso schema:MonetaryAmount .
+
+:ProjectStatus a owl:Class ;
+    rdfs:label "Project Status"@en ;
+    rdfs:comment "Lifecycle stage of a project as reported by the World Bank."@en .
+
+:WorldBankProject a owl:Class ;
+    rdfs:label "World Bank Project"@en ;
+    rdfs:comment "A development intervention executed or financed by the World Bank Group, identified by a World Bank project ID."@en ;
+    rdfs:subClassOf schema:Project,
+        foaf:Project .
+

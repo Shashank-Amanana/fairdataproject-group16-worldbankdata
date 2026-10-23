@@ -1,0 +1,11 @@
+# CQ2 - What is the total World Bank commitment (USD) per country, ranked from highest to lowest?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?country (COUNT(?project) AS ?projects) (SUM(?commitment) AS ?totalCommitmentUSD) WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:totalCommitmentUSD ?commitment ;
+           g16:hasSpatialCoverage/rdfs:label ?country .
+}
+GROUP BY ?country
+ORDER BY DESC(?totalCommitmentUSD)

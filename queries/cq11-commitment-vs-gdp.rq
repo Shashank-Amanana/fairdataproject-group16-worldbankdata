@@ -1,0 +1,25 @@
+# CQ11 (integration with Wikidata) - How large are the World Bank commitments in our sample compared with
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX wdt:    <http://www.wikidata.org/prop/direct/>
+
+SELECT ?country ?totalCommitmentUSD ?gdpUSD
+       ((100 * ?totalCommitmentUSD / ?gdpUSD) AS ?commitmentAsPercentOfGDP) WHERE {
+  {
+    SELECT ?country ?totalCommitmentUSD (MAX(?gdp) AS ?gdpUSD) WHERE {
+      {
+        SELECT ?country ?wikidata (SUM(?commitment) AS ?totalCommitmentUSD) WHERE {
+          ?project a g16:WorldBankProject ;
+                   g16:totalCommitmentUSD ?commitment ;
+                   g16:hasSpatialCoverage ?c .
+          ?c rdfs:label ?country ; schema:sameAs ?wikidata .
+        }
+        GROUP BY ?country ?wikidata
+      }
+      SERVICE <https://query.wikidata.org/sparql> { ?wikidata wdt:P2131 ?gdp }
+    }
+    GROUP BY ?country ?totalCommitmentUSD
+  }
+}
+ORDER BY DESC(?commitmentAsPercentOfGDP)

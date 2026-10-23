@@ -1,0 +1,14 @@
+# CQ8 - Which projects were Dropped, and which themes do they belong to?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?projectID ?projectName ?country (GROUP_CONCAT(?theme; separator=" | ") AS ?themes) WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:hasStatus g16:Dropped ;
+           g16:projectID ?projectID ;
+           g16:projectName ?projectName ;
+           g16:hasSpatialCoverage/rdfs:label ?country ;
+           g16:hasTheme/rdfs:label ?theme .
+}
+GROUP BY ?projectID ?projectName ?country
+ORDER BY ?projectID

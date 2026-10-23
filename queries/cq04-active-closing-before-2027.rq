@@ -1,0 +1,15 @@
+# CQ4 - Which projects are Active and scheduled to close before 2027-01-01?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?projectID ?projectName ?country ?closingDate WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:hasStatus g16:Active ;
+           g16:projectID ?projectID ;
+           g16:projectName ?projectName ;
+           g16:closingDate ?closingDate ;
+           g16:hasSpatialCoverage/rdfs:label ?country .
+  FILTER (?closingDate < "2027-01-01"^^xsd:date)
+}
+ORDER BY ?closingDate

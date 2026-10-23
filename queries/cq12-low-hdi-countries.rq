@@ -1,0 +1,21 @@
+# CQ12 (integration with Wikidata) - How much was committed to countries with low human development?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX wdt:    <http://www.wikidata.org/prop/direct/>
+
+SELECT ?country ?projects ?totalCommitmentUSD (MAX(?h) AS ?hdi) WHERE {
+  {
+    SELECT ?country ?wikidata (COUNT(?project) AS ?projects) (SUM(?commitment) AS ?totalCommitmentUSD) WHERE {
+      ?project a g16:WorldBankProject ;
+               g16:totalCommitmentUSD ?commitment ;
+               g16:hasSpatialCoverage ?c .
+      ?c rdfs:label ?country ; schema:sameAs ?wikidata .
+    }
+    GROUP BY ?country ?wikidata
+  }
+  SERVICE <https://query.wikidata.org/sparql> { ?wikidata wdt:P1081 ?h }
+}
+GROUP BY ?country ?projects ?totalCommitmentUSD
+HAVING (MAX(?h) < 0.550)
+ORDER BY ?hdi

@@ -1,0 +1,24 @@
+# CQ10 (integration with Wikidata) - How is the total commitment distributed across continents?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX wdt:    <http://www.wikidata.org/prop/direct/>
+
+SELECT ?continent (COUNT(DISTINCT ?country) AS ?countries) (SUM(?totalCommitmentUSD) AS ?commitmentUSD) WHERE {
+  {
+    SELECT ?country ?wikidata (SUM(?commitment) AS ?totalCommitmentUSD) WHERE {
+      ?project a g16:WorldBankProject ;
+               g16:totalCommitmentUSD ?commitment ;
+               g16:hasSpatialCoverage ?c .
+      ?c rdfs:label ?country ; schema:sameAs ?wikidata .
+    }
+    GROUP BY ?country ?wikidata
+  }
+  SERVICE <https://query.wikidata.org/sparql> {
+    ?wikidata wdt:P30 ?cont .
+    ?cont rdfs:label ?continent .
+    FILTER (lang(?continent) = "en")
+  }
+}
+GROUP BY ?continent
+ORDER BY DESC(?commitmentUSD)

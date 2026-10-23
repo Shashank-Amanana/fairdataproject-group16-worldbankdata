@@ -1,0 +1,15 @@
+# CQ1 - Which projects were approved for Kenya between 2010 and 2020, and what is their status?
+PREFIX g16:    <https://w3id.org/FAIR-course-UT/2026/group16/ont#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?projectID ?projectName ?approvalDate ?status WHERE {
+  ?project a g16:WorldBankProject ;
+           g16:projectID ?projectID ;
+           g16:projectName ?projectName ;
+           g16:approvalDate ?approvalDate ;
+           g16:hasStatus/rdfs:label ?status ;
+           g16:hasSpatialCoverage/rdfs:label "Kenya" .
+  FILTER (?approvalDate >= "2010-01-01"^^xsd:date && ?approvalDate <= "2020-12-31"^^xsd:date)
+}
+ORDER BY ?approvalDate
