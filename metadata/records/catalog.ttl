@@ -10,7 +10,7 @@
   dcterms:title "World Bank Projects - FAIR course Group 16";
   dcat:version "1.0";
   <https://w3id.org/fdp/fdp-o#metadataIssued> "2026-10-24T11:41:03.545683971Z"^^xsd:dateTime;
-  <https://w3id.org/fdp/fdp-o#metadataModified> "2026-10-24T11:41:25.524545832Z"^^xsd:dateTime;
+  <https://w3id.org/fdp/fdp-o#metadataModified> "2026-10-24T16:22:49.728057674Z"^^xsd:dateTime;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
   dcterms:description "Catalog of the FAIRified World Bank Projects & Operations sample, FAIR Data Engineering course, University of Twente, 2025-2026.";
   dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en>;
