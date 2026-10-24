@@ -4,24 +4,24 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix ldp: <http://www.w3.org/ns/ldp#> .
 
-<http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073> a dcat:Resource,
+<http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f> a dcat:Resource,
     dcat:Dataset;
   <http://www.w3.org/2000/01/rdf-schema#label> "World Bank Projects & Operations - FAIRified sample (Group 16)";
   dcterms:title "World Bank Projects & Operations - FAIRified sample (Group 16)";
   dcat:version "1.0";
-  <https://w3id.org/fdp/fdp-o#metadataIssued> "2026-10-22T14:23:18.307925833Z"^^xsd:dateTime;
-  <https://w3id.org/fdp/fdp-o#metadataModified> "2026-10-22T14:56:31.452451005Z"^^xsd:dateTime;
+  <https://w3id.org/fdp/fdp-o#metadataIssued> "2026-10-24T11:41:08.34777442Z"^^xsd:dateTime;
+  <https://w3id.org/fdp/fdp-o#metadataModified> "2026-10-24T11:41:25.365396069Z"^^xsd:dateTime;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
   dcterms:description "2,000 World Bank lending projects in 156 countries (up to 14 per country), taken from the World Bank Projects & Operations dataset (downloaded 2026-09-09). Cleaned, modelled with the Group 16 ontology, linked to Wikidata and converted to RDF.";
   dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en>;
-  <https://w3id.org/fdp/fdp-o#metadataIdentifier> <http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073#identifier>;
-  dcterms:accessRights <http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073#accessRights>;
+  <https://w3id.org/fdp/fdp-o#metadataIdentifier> <http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f#identifier>;
+  dcterms:accessRights <http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f#accessRights>;
   dcterms:publisher [ a foaf:Agent;
       foaf:name "University of Twente - FAIR Data Engineering course, Group 16"
     ];
-  dcterms:isPartOf <http://localhost:8085/catalog/687f8b6c-c573-47aa-8a87-a4bc276497eb>;
-  <http://semanticscience.org/resource/SIO_000628> <http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073/metrics/445c0a70d1e214e545b261559e2842f4>,
-    <http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073/metrics/5d27e854a9e78eb3f663331cd47cdc13>;
+  dcterms:isPartOf <http://localhost:8085/catalog/1fe308a9-3427-42d8-9826-a9d793adb999>;
+  <http://semanticscience.org/resource/SIO_000628> <http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f/metrics/445c0a70d1e214e545b261559e2842f4>,
+    <http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f/metrics/5d27e854a9e78eb3f663331cd47cdc13>;
   dcat:theme <http://publications.europa.eu/resource/authority/data-theme/ECON>;
   dcat:keyword "World Bank", "development finance", "lending projects";
   dcat:landingPage <https://github.com/Shashank-Amanana/fairdataproject-group16-worldbankdata>;
@@ -31,32 +31,32 @@
       foaf:name "Saket Dronamraju"
     ];
   dcterms:source <https://datacatalog.worldbank.org/search/dataset/0037800/world-bank-projects-operations>;
-  dcat:distribution <http://localhost:8085/distribution/1696269a-ac71-4e1a-a62f-e1f6305d0718>,
-    <http://localhost:8085/distribution/2038be92-e78d-4dbf-8f9f-2a9a12e9d26f>;
+  dcat:distribution <http://localhost:8085/distribution/d427a36c-af48-46a3-b010-b094a1fbbea2>,
+    <http://localhost:8085/distribution/0df6ca89-989a-4bc8-b931-c67d10f3b64b>, <http://localhost:8085/distribution/6857d660-6299-42ac-9576-455a9baa9db0>;
   dcterms:conformsTo <http://localhost:8085/profile/2f08228e-1789-40f8-84cd-28e3288c3604> .
 
-<http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073#identifier> a
+<http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f#identifier> a
     <http://purl.org/spar/datacite/Identifier>;
-  dcterms:identifier "http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073" .
+  dcterms:identifier "http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f" .
 
-<http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073#accessRights>
+<http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f#accessRights>
   a dcterms:RightsStatement;
   dcterms:description "This resource has no access restriction" .
 
-<http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073/metrics/445c0a70d1e214e545b261559e2842f4>
+<http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f/metrics/445c0a70d1e214e545b261559e2842f4>
   <http://semanticscience.org/resource/SIO_000628> <https://www.ietf.org/rfc/rfc3986.txt>;
   <http://semanticscience.org/resource/SIO_000332> <https://www.ietf.org/rfc/rfc3986.txt> .
 
-<http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073/metrics/5d27e854a9e78eb3f663331cd47cdc13>
+<http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f/metrics/5d27e854a9e78eb3f663331cd47cdc13>
   <http://semanticscience.org/resource/SIO_000628> <https://www.wikidata.org/wiki/Q8777>;
   <http://semanticscience.org/resource/SIO_000332> <https://www.wikidata.org/wiki/Q8777> .
 
 <http://localhost:8085/distribution/> a ldp:DirectContainer;
   dcterms:title "Distributions";
-  ldp:membershipResource <http://localhost:8085/dataset/6c0a7dc6-89ff-4f68-8ee5-44bf9c033073>;
+  ldp:membershipResource <http://localhost:8085/dataset/9088332f-b6c3-4257-b0ef-041fc81c521f>;
   ldp:hasMemberRelation dcat:distribution;
-  ldp:contains <http://localhost:8085/distribution/1696269a-ac71-4e1a-a62f-e1f6305d0718>,
-    <http://localhost:8085/distribution/2038be92-e78d-4dbf-8f9f-2a9a12e9d26f> .
+  ldp:contains <http://localhost:8085/distribution/d427a36c-af48-46a3-b010-b094a1fbbea2>,
+    <http://localhost:8085/distribution/0df6ca89-989a-4bc8-b931-c67d10f3b64b>, <http://localhost:8085/distribution/6857d660-6299-42ac-9576-455a9baa9db0> .
 
 <http://localhost:8085/profile/2f08228e-1789-40f8-84cd-28e3288c3604> <http://www.w3.org/2000/01/rdf-schema#label>
     "Dataset Profile" .
