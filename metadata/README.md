@@ -1,1 +1,1 @@
-This directory contains the metadata records (catalog, dataset and three distributions) and the metadata schemas.
+This directory contains the metadata records (catalog, dataset and three distributions) and the metadata schemas. dataset-public.ttl is the public copy of the dataset record (PID https://w3id.org/FAIR-course-UT/2026/group16/metadata), because the FAIR Data Point runs locally.

@@ -1,0 +1,61 @@
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/FAIR-course-UT/2026/group16/metadata> a dcat:Dataset ;
+  dcterms:identifier "https://w3id.org/FAIR-course-UT/2026/group16/metadata"^^xsd:anyURI ;
+  dcterms:title "World Bank Projects & Operations - FAIRified sample (Group 16)"@en ;
+  dcterms:description "2,000 World Bank lending projects in 156 countries (up to 14 per country), taken from the World Bank Projects & Operations dataset (downloaded 2026-09-09). Cleaned, modelled with the Group 16 ontology, linked to Wikidata and converted to RDF."@en ;
+  dcterms:type <http://purl.org/dc/dcmitype/Dataset> ;
+  dcat:version "1.0" ;
+  dcterms:issued "2026-10-22T00:00:00Z"^^xsd:dateTime ;
+  dcterms:modified "2026-10-24T00:00:00Z"^^xsd:dateTime ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+  dcterms:publisher [ a foaf:Agent ;
+      foaf:name "University of Twente - FAIR Data Engineering course, Group 16" ] ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "Shashank Kumar Amanana" ] ,
+                  [ a foaf:Agent ; foaf:name "Saket Dronamraju" ] ;
+  dcterms:source <https://datacatalog.worldbank.org/search/dataset/0037800/world-bank-projects-operations> ;
+  dcat:theme <http://publications.europa.eu/resource/authority/data-theme/ECON> ;
+  dcat:keyword "World Bank"@en , "development finance"@en , "lending projects"@en ;
+  dcat:landingPage <https://github.com/Shashank-Amanana/fairdataproject-group16-worldbankdata> ;
+  dcat:distribution <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-original-csv> ,
+                    <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-rdf> ,
+                    <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-clean-csv> .
+
+<https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-original-csv> a dcat:Distribution ;
+  dcterms:title "World Bank projects sample - original CSV"@en ;
+  dcterms:publisher [ a foaf:Agent ;
+      foaf:name "University of Twente - FAIR Data Engineering course, Group 16" ] ;
+  dcat:version "1.0" ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcat:downloadURL <https://w3id.org/FAIR-course-UT/2026/group16/data/original> ;
+  dcat:mediaType "text/csv" ;
+  dcat:byteSize "638232"^^xsd:decimal .
+
+<https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-rdf> a dcat:Distribution ;
+  dcterms:title "World Bank projects sample - FAIRified RDF (Turtle)"@en ;
+  dcterms:publisher [ a foaf:Agent ;
+      foaf:name "University of Twente - FAIR Data Engineering course, Group 16" ] ;
+  dcat:version "1.0" ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcat:downloadURL <https://w3id.org/FAIR-course-UT/2026/group16/data> ;
+  dcat:mediaType "text/turtle" ;
+  dcat:byteSize "9135314"^^xsd:decimal ;
+  dcterms:conformsTo <https://w3id.org/FAIR-course-UT/2026/group16/ont> .
+
+<https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-clean-csv> a dcat:Distribution ;
+  dcterms:title "World Bank projects sample - FAIRified CSV (cleaned)"@en ;
+  dcterms:publisher [ a foaf:Agent ;
+      foaf:name "University of Twente - FAIR Data Engineering course, Group 16" ] ;
+  dcat:version "1.0" ;
+  dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcat:downloadURL <https://w3id.org/FAIR-course-UT/2026/group16/data/clean> ;
+  dcat:mediaType "text/csv" ;
+  dcat:byteSize "697975"^^xsd:decimal .

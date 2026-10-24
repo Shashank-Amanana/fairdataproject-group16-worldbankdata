@@ -12,3 +12,4 @@ Deliverables include the original and the FAIRified dataset, the ontology, the m
 | FAIRified data (RDF) | https://w3id.org/FAIR-course-UT/2026/group16/data |
 | Original data (CSV) | https://w3id.org/FAIR-course-UT/2026/group16/data/original |
 | FAIRified data (cleaned CSV) | https://w3id.org/FAIR-course-UT/2026/group16/data/clean |
+| Metadata (dataset and distributions) | https://w3id.org/FAIR-course-UT/2026/group16/metadata |
