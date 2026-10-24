@@ -1,6 +1,7 @@
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 <https://w3id.org/FAIR-course-UT/2026/group16/metadata> a dcat:Dataset ;
@@ -19,6 +20,7 @@
   dcterms:creator [ a foaf:Agent ; foaf:name "Shashank Kumar Amanana" ] ,
                   [ a foaf:Agent ; foaf:name "Saket Dronamraju" ] ;
   dcterms:source <https://datacatalog.worldbank.org/search/dataset/0037800/world-bank-projects-operations> ;
+  prov:wasDerivedFrom <https://datacatalog.worldbank.org/search/dataset/0037800/world-bank-projects-operations> ;
   dcat:theme <http://publications.europa.eu/resource/authority/data-theme/ECON> ;
   dcat:keyword "World Bank"@en , "development finance"@en , "lending projects"@en ;
   dcat:landingPage <https://github.com/Shashank-Amanana/fairdataproject-group16-worldbankdata> ;
@@ -38,6 +40,7 @@
   dcat:byteSize "638232"^^xsd:decimal .
 
 <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-rdf> a dcat:Distribution ;
+  prov:wasDerivedFrom <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-original-csv> ;
   dcterms:title "World Bank projects sample - FAIRified RDF (Turtle)"@en ;
   dcterms:publisher [ a foaf:Agent ;
       foaf:name "University of Twente - FAIR Data Engineering course, Group 16" ] ;
@@ -50,6 +53,7 @@
   dcterms:conformsTo <https://w3id.org/FAIR-course-UT/2026/group16/ont> .
 
 <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-clean-csv> a dcat:Distribution ;
+  prov:wasDerivedFrom <https://w3id.org/FAIR-course-UT/2026/group16/metadata#distribution-original-csv> ;
   dcterms:title "World Bank projects sample - FAIRified CSV (cleaned)"@en ;
   dcterms:publisher [ a foaf:Agent ;
       foaf:name "University of Twente - FAIR Data Engineering course, Group 16" ] ;
