@@ -1,0 +1,1218 @@
+[
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Project Name",
+    "expression": "grel:value.replace(/\\u0092/, \"’\").replace(/\\s+/, \" \").trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Repair encoding (U+0092 to ’) and collapse spaces in column Project Name"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Financier Name",
+    "expression": "grel:value.replace(/\\u0096/, \"–\").replace(/\\s+/, \" \").trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Repair encoding (U+0096 to –) and collapse spaces in column Financier Name"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Board Approval Date",
+    "expression": "grel:value.toDate(\"dd-MM-yyyy\").toString(\"yyyy-MM-dd\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Convert dates to ISO 8601 in column Board Approval Date"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Project Closing Date",
+    "expression": "grel:value.toDate(\"dd-MM-yyyy\").toString(\"yyyy-MM-dd\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Convert dates to ISO 8601 in column Project Closing Date"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Current Project Cost",
+    "expression": "grel:if(value.contains(\"E\"), toString(value.toNumber(), \"%.10f\").replace(/0+$/, \"\").replace(/\\.$/, \"\"), value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Write amounts without exponent in column Current Project Cost"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Total Commitment",
+    "expression": "grel:if(value.contains(\"E\"), toString(value.toNumber(), \"%.10f\").replace(/0+$/, \"\").replace(/\\.$/, \"\"), value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Write amounts without exponent in column Total Commitment"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Amount USD",
+    "expression": "grel:if(value.contains(\"E\"), toString(value.toNumber(), \"%.10f\").replace(/0+$/, \"\").replace(/\\.$/, \"\"), value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Write amounts without exponent in column Amount USD"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Lending Instrument",
+    "expression": "grel:if(value == \"UNIDENTIFIED\", \"Unidentified\", value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Relabel UNIDENTIFIED in column Lending Instrument"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Theme",
+    "expression": "grel:filter(forEach(value.split(\"|\"), v, v.trim()), v, v != \"\").uniques().join(\"|\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Trim and de-duplicate the values in column Theme"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Financier Name",
+    "expression": "grel:filter(forEach(value.split(\"|\"), v, v.trim()), v, v != \"\").uniques().join(\"|\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Trim and de-duplicate the values in column Financier Name"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Project Financial Type",
+    "expression": "grel:filter(forEach(value.split(\"|\"), v, v.trim()), v, v != \"\").uniques().join(\"|\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Trim and de-duplicate the values in column Project Financial Type"
+  },
+  {
+    "op": "core/recon",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "config": {
+      "mode": "standard-service",
+      "service": "https://wikidata.reconci.link/en/api",
+      "identifierSpace": "http://www.wikidata.org/entity/",
+      "schemaSpace": "http://www.wikidata.org/prop/direct/",
+      "type": {
+        "id": "Q6256",
+        "name": "country"
+      },
+      "autoMatch": true,
+      "batchSize": 10,
+      "columnDetails": [],
+      "limit": 0
+    },
+    "description": "Reconcile cells in column Country to type Q6256 (country) with Wikidata"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Albania",
+    "judgment": "matched",
+    "match": {
+      "id": "Q222",
+      "name": "Albania",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Albania (Q222) for all cells containing \"Albania\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "American Samoa",
+    "judgment": "matched",
+    "match": {
+      "id": "Q16641",
+      "name": "American Samoa",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match American Samoa (Q16641) for all cells containing \"American Samoa\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Armenia",
+    "judgment": "matched",
+    "match": {
+      "id": "Q399",
+      "name": "Armenia",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Armenia (Q399) for all cells containing \"Armenia\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Belarus",
+    "judgment": "matched",
+    "match": {
+      "id": "Q184",
+      "name": "Belarus",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Belarus (Q184) for all cells containing \"Belarus\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Bulgaria",
+    "judgment": "matched",
+    "match": {
+      "id": "Q219",
+      "name": "Bulgaria",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Bulgaria (Q219) for all cells containing \"Bulgaria\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Democratic Republic of the Congo",
+    "judgment": "matched",
+    "match": {
+      "id": "Q974",
+      "name": "Democratic Republic of the Congo",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Democratic Republic of the Congo (Q974) for all cells containing \"Democratic Republic of the Congo\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Egypt",
+    "judgment": "matched",
+    "match": {
+      "id": "Q79",
+      "name": "Egypt",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Egypt (Q79) for all cells containing \"Egypt\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Ghana",
+    "judgment": "matched",
+    "match": {
+      "id": "Q117",
+      "name": "Ghana",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Ghana (Q117) for all cells containing \"Ghana\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Guyana",
+    "judgment": "matched",
+    "match": {
+      "id": "Q734",
+      "name": "Guyana",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Guyana (Q734) for all cells containing \"Guyana\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Hungary",
+    "judgment": "matched",
+    "match": {
+      "id": "Q28",
+      "name": "Hungary",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Hungary (Q28) for all cells containing \"Hungary\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Iran",
+    "judgment": "matched",
+    "match": {
+      "id": "Q794",
+      "name": "Iran",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Iran (Q794) for all cells containing \"Iran\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Kenya",
+    "judgment": "matched",
+    "match": {
+      "id": "Q114",
+      "name": "Kenya",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Kenya (Q114) for all cells containing \"Kenya\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Malawi",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1020",
+      "name": "Malawi",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Malawi (Q1020) for all cells containing \"Malawi\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Mali",
+    "judgment": "matched",
+    "match": {
+      "id": "Q912",
+      "name": "Mali",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Mali (Q912) for all cells containing \"Mali\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Mauritius",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1027",
+      "name": "Mauritius",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Mauritius (Q1027) for all cells containing \"Mauritius\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Moldova",
+    "judgment": "matched",
+    "match": {
+      "id": "Q217",
+      "name": "Moldova",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Moldova (Q217) for all cells containing \"Moldova\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Mongolia",
+    "judgment": "matched",
+    "match": {
+      "id": "Q711",
+      "name": "Mongolia",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Mongolia (Q711) for all cells containing \"Mongolia\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Nepal",
+    "judgment": "matched",
+    "match": {
+      "id": "Q837",
+      "name": "Nepal",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Nepal (Q837) for all cells containing \"Nepal\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Niger",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1032",
+      "name": "Niger",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Niger (Q1032) for all cells containing \"Niger\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Poland",
+    "judgment": "matched",
+    "match": {
+      "id": "Q36",
+      "name": "Poland",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Poland (Q36) for all cells containing \"Poland\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Republic of the Congo",
+    "judgment": "matched",
+    "match": {
+      "id": "Q971",
+      "name": "Republic of the Congo",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Republic of the Congo (Q971) for all cells containing \"Republic of the Congo\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Romania",
+    "judgment": "matched",
+    "match": {
+      "id": "Q218",
+      "name": "Romania",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Romania (Q218) for all cells containing \"Romania\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Russia",
+    "judgment": "matched",
+    "match": {
+      "id": "Q159",
+      "name": "Russia",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Russia (Q159) for all cells containing \"Russia\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Serbia",
+    "judgment": "matched",
+    "match": {
+      "id": "Q403",
+      "name": "Serbia",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Serbia (Q403) for all cells containing \"Serbia\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Sierra Leone",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1044",
+      "name": "Sierra Leone",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Sierra Leone (Q1044) for all cells containing \"Sierra Leone\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "The Gambia",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1005",
+      "name": "The Gambia",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match The Gambia (Q1005) for all cells containing \"The Gambia\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Trinidad and Tobago",
+    "judgment": "matched",
+    "match": {
+      "id": "Q754",
+      "name": "Trinidad and Tobago",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Trinidad and Tobago (Q754) for all cells containing \"Trinidad and Tobago\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Turkmenistan",
+    "judgment": "matched",
+    "match": {
+      "id": "Q874",
+      "name": "Turkmenistan",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Turkmenistan (Q874) for all cells containing \"Turkmenistan\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "Uganda",
+    "judgment": "matched",
+    "match": {
+      "id": "Q1036",
+      "name": "Uganda",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Uganda (Q1036) for all cells containing \"Uganda\" in column Country"
+  },
+  {
+    "op": "core/recon-judge-similar-cells",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "similarValue": "West Bank and Gaza Strip",
+    "judgment": "matched",
+    "match": {
+      "id": "Q407199",
+      "name": "Palestinian territories",
+      "types": [],
+      "score": 100.0
+    },
+    "shareNewTopics": false,
+    "description": "Match Palestinian territories (Q407199) for all cells containing \"West Bank and Gaza Strip\" in column Country"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Country",
+    "expression": "grel:\"http://www.wikidata.org/entity/\" + cell.recon.match.id",
+    "onError": "set-to-blank",
+    "newColumnName": "country_wikidata_uri",
+    "columnInsertIndex": 2,
+    "description": "Create column country_wikidata_uri with the IRI of the matched Wikidata item"
+  },
+  {
+    "op": "core/recon-discard-judgments",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "clearData": true,
+    "description": "Discard reconciliation data in column Country (the IRI is kept in country_wikidata_uri)"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Project ID",
+    "newColumnName": "project_id",
+    "description": "Rename column Project ID to project_id"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Project Name",
+    "newColumnName": "project_name",
+    "description": "Rename column Project Name to project_name"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Country",
+    "newColumnName": "country",
+    "description": "Rename column Country to country"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Project Status",
+    "newColumnName": "project_status",
+    "description": "Rename column Project Status to project_status"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Board Approval Date",
+    "newColumnName": "board_approval_date",
+    "description": "Rename column Board Approval Date to board_approval_date"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Project Closing Date",
+    "newColumnName": "project_closing_date",
+    "description": "Rename column Project Closing Date to project_closing_date"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Project Duration",
+    "newColumnName": "project_duration_years",
+    "description": "Rename column Project Duration to project_duration_years"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Current Project Cost",
+    "newColumnName": "current_project_cost_usd",
+    "description": "Rename column Current Project Cost to current_project_cost_usd"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Total Commitment",
+    "newColumnName": "total_commitment_usd",
+    "description": "Rename column Total Commitment to total_commitment_usd"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Amount USD",
+    "newColumnName": "financing_amount_usd",
+    "description": "Rename column Amount USD to financing_amount_usd"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Lending Instrument",
+    "newColumnName": "lending_instrument",
+    "description": "Rename column Lending Instrument to lending_instrument"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Theme",
+    "newColumnName": "themes",
+    "description": "Rename column Theme to themes"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Financier Name",
+    "newColumnName": "financiers",
+    "description": "Rename column Financier Name to financiers"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Project Financial Type",
+    "newColumnName": "financier_types",
+    "description": "Rename column Project Financial Type to financier_types"
+  },
+  {
+    "op": "core/column-reorder",
+    "columnNames": [
+      "project_id",
+      "project_name",
+      "country",
+      "country_wikidata_uri",
+      "project_status",
+      "board_approval_date",
+      "project_closing_date",
+      "project_duration_years",
+      "current_project_cost_usd",
+      "total_commitment_usd",
+      "financing_amount_usd",
+      "lending_instrument",
+      "themes",
+      "financiers",
+      "financier_types"
+    ],
+    "description": "Reorder columns"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "themes",
+    "keyColumnName": "project_id",
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "description": "Split multi-valued cells in column themes"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "financiers",
+    "keyColumnName": "project_id",
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "description": "Split multi-valued cells in column financiers"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "financier_types",
+    "keyColumnName": "project_id",
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "description": "Split multi-valued cells in column financier_types"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "project_id",
+    "description": "Fill down cells in column project_id"
+  },
+  {
+    "op": "rdf-extension/save-rdf-schema",
+    "schema": {
+      "baseUri": "https://w3id.org/FAIR-course-UT/2026/group16/data#",
+      "prefixes": [
+        {
+          "name": "g16",
+          "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#"
+        },
+        {
+          "name": "rdfs",
+          "uri": "http://www.w3.org/2000/01/rdf-schema#"
+        },
+        {
+          "name": "xsd",
+          "uri": "http://www.w3.org/2001/XMLSchema#"
+        },
+        {
+          "name": "schema",
+          "uri": "http://schema.org/"
+        },
+        {
+          "name": "rdf",
+          "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        }
+      ],
+      "rootNodes": [
+        {
+          "nodeType": "cell-as-resource",
+          "isRowNumberCell": false,
+          "columnName": "project_id",
+          "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#' + value",
+          "rdfTypes": [
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject",
+              "curie": "g16:WorldBankProject"
+            }
+          ],
+          "links": [
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#projectID",
+              "curie": "g16:projectID",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "project_id",
+                "expression": "value"
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#projectName",
+              "curie": "g16:projectName",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "project_name",
+                "expression": "value"
+              }
+            },
+            {
+              "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+              "curie": "rdfs:label",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "project_name",
+                "expression": "value"
+              }
+            },
+            {
+              "uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+              "curie": "rdfs:seeAlso",
+              "target": {
+                "nodeType": "cell-as-resource",
+                "isRowNumberCell": false,
+                "columnName": "project_id",
+                "expression": "'https://projects.worldbank.org/en/projects-operations/project-detail/' + value",
+                "rdfTypes": [],
+                "links": []
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#hasStatus",
+              "curie": "g16:hasStatus",
+              "target": {
+                "nodeType": "cell-as-resource",
+                "isRowNumberCell": false,
+                "columnName": "project_status",
+                "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/ont#' + value",
+                "rdfTypes": [],
+                "links": []
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#approvalDate",
+              "curie": "g16:approvalDate",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "board_approval_date",
+                "expression": "value",
+                "valueType": "http://www.w3.org/2001/XMLSchema#date"
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#closingDate",
+              "curie": "g16:closingDate",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "project_closing_date",
+                "expression": "value",
+                "valueType": "http://www.w3.org/2001/XMLSchema#date"
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#durationInYears",
+              "curie": "g16:durationInYears",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "project_duration_years",
+                "expression": "value",
+                "valueType": "http://www.w3.org/2001/XMLSchema#decimal"
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#currentCostUSD",
+              "curie": "g16:currentCostUSD",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "current_project_cost_usd",
+                "expression": "value",
+                "valueType": "http://www.w3.org/2001/XMLSchema#decimal"
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#totalCommitmentUSD",
+              "curie": "g16:totalCommitmentUSD",
+              "target": {
+                "nodeType": "cell-as-literal",
+                "isRowNumberCell": false,
+                "columnName": "total_commitment_usd",
+                "expression": "value",
+                "valueType": "http://www.w3.org/2001/XMLSchema#decimal"
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#hasLendingInstrument",
+              "curie": "g16:hasLendingInstrument",
+              "target": {
+                "nodeType": "cell-as-resource",
+                "isRowNumberCell": false,
+                "columnName": "lending_instrument",
+                "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#lending-instrument-' + value.toLowercase().replace(/[^a-z0-9]+/, '-').replace(/^-|-$/, '')",
+                "rdfTypes": [
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#LendingInstrument",
+                    "curie": "g16:LendingInstrument"
+                  }
+                ],
+                "links": [
+                  {
+                    "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+                    "curie": "rdfs:label",
+                    "target": {
+                      "nodeType": "cell-as-literal",
+                      "isRowNumberCell": false,
+                      "columnName": "lending_instrument",
+                      "expression": "value",
+                      "lang": "en"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#hasTheme",
+              "curie": "g16:hasTheme",
+              "target": {
+                "nodeType": "cell-as-resource",
+                "isRowNumberCell": false,
+                "columnName": "themes",
+                "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#theme-' + value.toLowercase().replace(/[^a-z0-9]+/, '-').replace(/^-|-$/, '')",
+                "rdfTypes": [
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#DevelopmentTheme",
+                    "curie": "g16:DevelopmentTheme"
+                  }
+                ],
+                "links": [
+                  {
+                    "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+                    "curie": "rdfs:label",
+                    "target": {
+                      "nodeType": "cell-as-literal",
+                      "isRowNumberCell": false,
+                      "columnName": "themes",
+                      "expression": "value",
+                      "lang": "en"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#hasSpatialCoverage",
+              "curie": "g16:hasSpatialCoverage",
+              "target": {
+                "nodeType": "cell-as-resource",
+                "isRowNumberCell": false,
+                "columnName": "country",
+                "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#country-' + value.toLowercase().replace(/[^a-z0-9]+/, '-').replace(/^-|-$/, '')",
+                "rdfTypes": [
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#Country",
+                    "curie": "g16:Country"
+                  }
+                ],
+                "links": [
+                  {
+                    "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+                    "curie": "rdfs:label",
+                    "target": {
+                      "nodeType": "cell-as-literal",
+                      "isRowNumberCell": false,
+                      "columnName": "country",
+                      "expression": "value"
+                    }
+                  },
+                  {
+                    "uri": "http://schema.org/sameAs",
+                    "curie": "schema:sameAs",
+                    "target": {
+                      "nodeType": "cell-as-resource",
+                      "isRowNumberCell": false,
+                      "columnName": "country_wikidata_uri",
+                      "expression": "value",
+                      "rdfTypes": [],
+                      "links": []
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#hasFinancialAllocation",
+              "curie": "g16:hasFinancialAllocation",
+              "target": {
+                "nodeType": "cell-as-resource",
+                "isRowNumberCell": false,
+                "columnName": "project_id",
+                "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#' + value + '-allocation'",
+                "rdfTypes": [
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialAllocation",
+                    "curie": "g16:FinancialAllocation"
+                  }
+                ],
+                "links": [
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#allocationAmountUSD",
+                    "curie": "g16:allocationAmountUSD",
+                    "target": {
+                      "nodeType": "cell-as-literal",
+                      "isRowNumberCell": false,
+                      "columnName": "financing_amount_usd",
+                      "expression": "value",
+                      "valueType": "http://www.w3.org/2001/XMLSchema#decimal"
+                    }
+                  },
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#currency",
+                    "curie": "g16:currency",
+                    "target": {
+                      "nodeType": "literal",
+                      "value": "USD"
+                    }
+                  },
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#providedByFinancier",
+                    "curie": "g16:providedByFinancier",
+                    "target": {
+                      "nodeType": "cell-as-resource",
+                      "isRowNumberCell": false,
+                      "columnName": "financiers",
+                      "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#financier-' + value.toLowercase().replace(/[^a-z0-9]+/, '-').replace(/^-|-$/, '')",
+                      "rdfTypes": [
+                        {
+                          "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#Financier",
+                          "curie": "g16:Financier"
+                        }
+                      ],
+                      "links": [
+                        {
+                          "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+                          "curie": "rdfs:label",
+                          "target": {
+                            "nodeType": "cell-as-literal",
+                            "isRowNumberCell": false,
+                            "columnName": "financiers",
+                            "expression": "value"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#hasFinancialType",
+                    "curie": "g16:hasFinancialType",
+                    "target": {
+                      "nodeType": "cell-as-resource",
+                      "isRowNumberCell": false,
+                      "columnName": "financier_types",
+                      "expression": "'https://w3id.org/FAIR-course-UT/2026/group16/data#financial-type-' + value.toLowercase().replace(/[^a-z0-9]+/, '-').replace(/^-|-$/, '')",
+                      "rdfTypes": [
+                        {
+                          "uri": "https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialType",
+                          "curie": "g16:FinancialType"
+                        }
+                      ],
+                      "links": [
+                        {
+                          "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+                          "curie": "rdfs:label",
+                          "target": {
+                            "nodeType": "cell-as-literal",
+                            "isRowNumberCell": false,
+                            "columnName": "financier_types",
+                            "expression": "value",
+                            "lang": "en"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "description": "Save RDF schema skeleton"
+  }
+]
