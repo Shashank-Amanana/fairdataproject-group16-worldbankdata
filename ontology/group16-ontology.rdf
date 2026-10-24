@@ -12,14 +12,11 @@
     <owl:Ontology rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont">
         <owl:versionIRI rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont/1.0.0"/>
         <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-10-21</dcterms:created>
-        <dcterms:creator xml:lang="en">Group 16</dcterms:creator>
         <dcterms:creator>Saket Dronamraju</dcterms:creator>
         <dcterms:creator>Shashank Kumar Amanana</dcterms:creator>
         <dcterms:description xml:lang="en">A semantic domain model for FAIRifying World Bank project operations: project lifecycle dates and durations, financial commitments and allocations, financiers, lending instruments, development themes and recipient countries.</dcterms:description>
         <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <dcterms:title xml:lang="en">World Bank FAIR Project Ontology - Group 16</dcterms:title>
-        <rdfs:seeAlso rdf:resource="https://github.com/Shashank-Amanana/fairdataproject-group16-worldbankdata"/>
-        <owl:versionInfo>1.0.0</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -75,7 +72,6 @@
         <rdfs:range rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#LendingInstrument"/>
         <rdfs:comment xml:lang="en">The lending instrument through which the World Bank finances the project.</rdfs:comment>
         <rdfs:label xml:lang="en">has lending instrument</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://purl.org/dc/terms/type"/>
     </owl:ObjectProperty>
     
 
@@ -111,7 +107,6 @@
         <rdfs:range rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#Financier"/>
         <rdfs:comment xml:lang="en">A financier that contributes to the allocation. An allocation can be provided by several financiers.</rdfs:comment>
         <rdfs:label xml:lang="en">provided by financier</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://schema.org/funder"/>
     </owl:ObjectProperty>
     
 
@@ -142,7 +137,6 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:comment xml:lang="en">Date on which the World Bank Board of Executive Directors approved the project.</rdfs:comment>
         <rdfs:label xml:lang="en">approval date</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://schema.org/startDate"/>
     </owl:DatatypeProperty>
     
 
@@ -153,7 +147,6 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:comment xml:lang="en">Planned (for active and pipeline projects) or actual (for closed projects) closing date of the project.</rdfs:comment>
         <rdfs:label xml:lang="en">closing date</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://schema.org/endDate"/>
     </owl:DatatypeProperty>
     
 
@@ -199,7 +192,6 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment xml:lang="en">The name of the project as given by the World Bank.</rdfs:comment>
         <rdfs:label xml:lang="en">project name</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://purl.org/dc/terms/title"/>
     </owl:DatatypeProperty>
     
 
@@ -242,7 +234,6 @@
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialAllocation">
         <rdfs:comment xml:lang="en">An intermediary node connecting a project to its financiers, the types of those financiers, and the total amount they provide. In this dataset each project has one allocation, because the source reports one total amount per project and not an amount per financier.</rdfs:comment>
         <rdfs:label xml:lang="en">Financial Allocation</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://schema.org/MonetaryAmount"/>
     </owl:Class>
     
 
@@ -308,4 +299,3 @@
         <rdfs:label xml:lang="en">Pipeline</rdfs:label>
     </owl:NamedIndividual>
 </rdf:RDF>
-
