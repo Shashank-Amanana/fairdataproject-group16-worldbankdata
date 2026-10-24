@@ -11,83 +11,47 @@
      xmlns:dcterms="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont">
         <owl:versionIRI rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont/1.0.0"/>
-        <dcterms:title xml:lang="en">World Bank FAIR Project Ontology - Group 16</dcterms:title>
-        <dcterms:description xml:lang="en">A semantic domain model for FAIRifying World Bank project operations: project lifecycle dates and durations, financial commitments and allocations, financiers, lending instruments, development themes and recipient countries.</dcterms:description>
-        <dcterms:creator xml:lang="en">Group 16</dcterms:creator>
-        <dcterms:creator>Shashank Kumar Amanana</dcterms:creator>
-        <dcterms:creator>Saket Dronamraju</dcterms:creator>
         <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-10-21</dcterms:created>
+        <dcterms:creator xml:lang="en">Group 16</dcterms:creator>
+        <dcterms:creator>Saket Dronamraju</dcterms:creator>
+        <dcterms:creator>Shashank Kumar Amanana</dcterms:creator>
+        <dcterms:description xml:lang="en">A semantic domain model for FAIRifying World Bank project operations: project lifecycle dates and durations, financial commitments and allocations, financiers, lending instruments, development themes and recipient countries.</dcterms:description>
         <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <dcterms:title xml:lang="en">World Bank FAIR Project Ontology - Group 16</dcterms:title>
         <rdfs:seeAlso rdf:resource="https://github.com/Shashank-Amanana/fairdataproject-group16-worldbankdata"/>
         <owl:versionInfo>1.0.0</owl:versionInfo>
     </owl:Ontology>
+    
 
-
-
-
-
-
-
-
-
+    
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/created"/>
-
-
-
-
+    
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
-
-
-
-
+    
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
-
-
-
-
+    
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
-
-
-
-
+    
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
 
-
-
-
-
-
-
-
-
+    
 
     <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
 
-
-
-
-
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/spatial"/>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/subject"/>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#hasFinancialAllocation">
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject"/>
@@ -95,10 +59,7 @@
         <rdfs:comment xml:lang="en">Links a project to the financial allocation that describes its financing package.</rdfs:comment>
         <rdfs:label xml:lang="en">has financial allocation</rdfs:label>
     </owl:ObjectProperty>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#hasFinancialType">
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialAllocation"/>
@@ -106,10 +67,7 @@
         <rdfs:comment xml:lang="en">A type of financier involved in the allocation (e.g. World Bank Group, Bilateral Agency). An allocation can have several types. The source does not say which financier has which type, so the types are attached to the allocation, not to individual financiers.</rdfs:comment>
         <rdfs:label xml:lang="en">has financial type</rdfs:label>
     </owl:ObjectProperty>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#hasLendingInstrument">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -119,10 +77,7 @@
         <rdfs:label xml:lang="en">has lending instrument</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://purl.org/dc/terms/type"/>
     </owl:ObjectProperty>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#hasSpatialCoverage">
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/spatial"/>
@@ -131,10 +86,7 @@
         <rdfs:comment xml:lang="en">The country or territory that receives the funds and where the project takes place.</rdfs:comment>
         <rdfs:label xml:lang="en">has spatial coverage</rdfs:label>
     </owl:ObjectProperty>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#hasStatus">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -143,10 +95,7 @@
         <rdfs:comment xml:lang="en">The current lifecycle stage of the project.</rdfs:comment>
         <rdfs:label xml:lang="en">has status</rdfs:label>
     </owl:ObjectProperty>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#hasTheme">
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/subject"/>
@@ -155,10 +104,7 @@
         <rdfs:comment xml:lang="en">A development theme the project contributes to. A project can have several themes.</rdfs:comment>
         <rdfs:label xml:lang="en">has theme</rdfs:label>
     </owl:ObjectProperty>
-
-
-
-
+    
 
     <owl:ObjectProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#providedByFinancier">
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialAllocation"/>
@@ -167,33 +113,18 @@
         <rdfs:label xml:lang="en">provided by financier</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://schema.org/funder"/>
     </owl:ObjectProperty>
+    
 
-
-
-
-
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="http://purl.org/dc/terms/date"/>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="http://purl.org/dc/terms/identifier"/>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="http://schema.org/currency"/>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#allocationAmountUSD">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -202,38 +133,29 @@
         <rdfs:comment xml:lang="en">Total amount of the allocation in US dollars, summed over all its financiers (source column &apos;Amount USD&apos;).</rdfs:comment>
         <rdfs:label xml:lang="en">allocation amount USD</rdfs:label>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#approvalDate">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/date"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:comment xml:lang="en">Date on which the World Bank Board of Executive Directors approved the project.</rdfs:comment>
         <rdfs:label xml:lang="en">approval date</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://schema.org/startDate"/>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#closingDate">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/date"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:comment xml:lang="en">Planned (for active and pipeline projects) or actual (for closed projects) closing date of the project.</rdfs:comment>
         <rdfs:label xml:lang="en">closing date</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://schema.org/endDate"/>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#currency">
         <rdfs:subPropertyOf rdf:resource="http://schema.org/currency"/>
@@ -242,10 +164,7 @@
         <rdfs:comment xml:lang="en">Currency of the allocation as an ISO 4217 code. Always &quot;USD&quot; in this dataset.</rdfs:comment>
         <rdfs:label xml:lang="en">currency</rdfs:label>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#currentCostUSD">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -254,10 +173,7 @@
         <rdfs:comment xml:lang="en">Current estimate of the total cost of the project from all funding sources, in US dollars.</rdfs:comment>
         <rdfs:label xml:lang="en">current project cost USD</rdfs:label>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#durationInYears">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -266,23 +182,17 @@
         <rdfs:comment xml:lang="en">Time between the approval date and the closing date, in years with one decimal, as reported in the source.</rdfs:comment>
         <rdfs:label xml:lang="en">project duration (years)</rdfs:label>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#projectID">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment xml:lang="en">The World Bank project identifier, the letter P followed by six digits (e.g. P000035).</rdfs:comment>
         <rdfs:label xml:lang="en">project ID</rdfs:label>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#projectName">
         <rdfs:domain rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject"/>
@@ -291,10 +201,7 @@
         <rdfs:label xml:lang="en">project name</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://purl.org/dc/terms/title"/>
     </owl:DatatypeProperty>
-
-
-
-
+    
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#totalCommitmentUSD">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -303,105 +210,66 @@
         <rdfs:comment xml:lang="en">Amount committed by the World Bank (IBRD and/or IDA) to the project, in US dollars.</rdfs:comment>
         <rdfs:label xml:lang="en">total commitment USD</rdfs:label>
     </owl:DatatypeProperty>
+    
 
-
-
-
-
-
-
-
-
+    
 
     <owl:Class rdf:about="http://schema.org/Country"/>
-
-
-
-
+    
 
     <owl:Class rdf:about="http://schema.org/Project"/>
-
-
-
-
+    
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
-
-
-
-
+    
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Project"/>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#Country">
         <rdfs:subClassOf rdf:resource="http://schema.org/Country"/>
         <rdfs:comment xml:lang="en">A country or territory that borrows or receives World Bank funds, linked to its Wikidata item. Includes territories that are not sovereign states (e.g. West Bank and Gaza, Sint Maarten).</rdfs:comment>
         <rdfs:label xml:lang="en">Country</rdfs:label>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#DevelopmentTheme">
         <rdfs:comment xml:lang="en">A development objective a project contributes to, from the World Bank theme taxonomy (e.g. Public Sector Management, Human Development and Gender).</rdfs:comment>
         <rdfs:label xml:lang="en">Development Theme</rdfs:label>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialAllocation">
         <rdfs:comment xml:lang="en">An intermediary node connecting a project to its financiers, the types of those financiers, and the total amount they provide. In this dataset each project has one allocation, because the source reports one total amount per project and not an amount per financier.</rdfs:comment>
         <rdfs:label xml:lang="en">Financial Allocation</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://schema.org/MonetaryAmount"/>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#FinancialType">
         <rdfs:comment xml:lang="en">A category of financier (World Bank Group, Bilateral Agency, Multilateral Agency, Trust Funds, Local Contributor, Private Organization, Export Credit, Other).</rdfs:comment>
         <rdfs:label xml:lang="en">Financial Type</rdfs:label>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#Financier">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
         <rdfs:comment xml:lang="en">An organisation or source of funds that finances a project (e.g. IDA Credit, Global Environment Facility, Borrower/Recipient). Some financiers are generic categories rather than named organisations.</rdfs:comment>
         <rdfs:label xml:lang="en">Financier</rdfs:label>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#LendingInstrument">
         <rdfs:comment xml:lang="en">The financing instrument through which the World Bank provides funds (e.g. Investment Project Financing, Development Policy Lending, Program-for-Results Financing).</rdfs:comment>
         <rdfs:label xml:lang="en">Lending Instrument</rdfs:label>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#ProjectStatus">
         <rdfs:comment xml:lang="en">Lifecycle stage of a project as reported by the World Bank.</rdfs:comment>
         <rdfs:label xml:lang="en">Project Status</rdfs:label>
     </owl:Class>
-
-
-
-
+    
 
     <owl:Class rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#WorldBankProject">
         <rdfs:subClassOf rdf:resource="http://schema.org/Project"/>
@@ -409,45 +277,30 @@
         <rdfs:comment xml:lang="en">A development intervention executed or financed by the World Bank Group, identified by a World Bank project ID.</rdfs:comment>
         <rdfs:label xml:lang="en">World Bank Project</rdfs:label>
     </owl:Class>
+    
 
-
-
-
-
-
-
-
-
+    
 
     <owl:NamedIndividual rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#Active">
         <rdf:type rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#ProjectStatus"/>
         <rdfs:comment xml:lang="en">Approved and under implementation.</rdfs:comment>
         <rdfs:label xml:lang="en">Active</rdfs:label>
     </owl:NamedIndividual>
-
-
-
-
+    
 
     <owl:NamedIndividual rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#Closed">
         <rdf:type rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#ProjectStatus"/>
         <rdfs:comment xml:lang="en">Implementation has ended.</rdfs:comment>
         <rdfs:label xml:lang="en">Closed</rdfs:label>
     </owl:NamedIndividual>
-
-
-
-
+    
 
     <owl:NamedIndividual rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#Dropped">
         <rdf:type rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#ProjectStatus"/>
         <rdfs:comment xml:lang="en">Discontinued before or during implementation.</rdfs:comment>
         <rdfs:label xml:lang="en">Dropped</rdfs:label>
     </owl:NamedIndividual>
-
-
-
-
+    
 
     <owl:NamedIndividual rdf:about="https://w3id.org/FAIR-course-UT/2026/group16/ont#Pipeline">
         <rdf:type rdf:resource="https://w3id.org/FAIR-course-UT/2026/group16/ont#ProjectStatus"/>
@@ -455,3 +308,4 @@
         <rdfs:label xml:lang="en">Pipeline</rdfs:label>
     </owl:NamedIndividual>
 </rdf:RDF>
+
