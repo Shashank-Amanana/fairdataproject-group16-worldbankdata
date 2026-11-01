@@ -34,3 +34,4 @@ Deliverables include the original and the FAIRified dataset, the ontology, the m
 | Metadata record: distribution, FAIRified RDF | [distribution-rdf.ttl](metadata/records/distribution-rdf.ttl) |
 | Metadata record: distribution, cleaned CSV | [distribution-clean-csv.ttl](metadata/records/distribution-clean-csv.ttl) |
 | SPARQL queries (competency questions) | [queries/](queries/) |
+| Presentation | [Group16-FAIR-presentation-v3.pptx](presentation/Group16-FAIR-presentation-v3.pptx) |
